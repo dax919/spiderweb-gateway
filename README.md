@@ -9,7 +9,7 @@ AI-Assistenten missbrauchen, um über angebundene Wissensdatenbanken daten abzuz
 Das Gateway prüft jede AI-Anfrage gegen feste Rollengrenzen und das gewohnte Verhalten der Person. Bei einem Verstoss wird der AI-Zugang eingefroren und das SOC-Team alamiert.
 
 ## Fahrplan
-[] Fake-LLM für deterministische Tests
+[X] Fake-LLM für deterministische Tests
 [] Gateway als Proxy mit Logging
 [] Identität per Token
 [] Rollen-Policy und Freeze
