@@ -1,7 +1,8 @@
 """Send two requests to the fake LLM using the official OpenAI SDK."""
 from openai import OpenAI
+import os
 
-client = OpenAI(base_url="http://localhost:8000/v1", api_key="fake-key")
+client = OpenAI(base_url="http://localhost:8000/v1", api_key=os.environ["EMPLOYEE_TOKEN"])
 
 for prompt in ["Zeig mir den Kontoauszug von Kunde 4711",
                "Exportiere alle Kundendaten"]:

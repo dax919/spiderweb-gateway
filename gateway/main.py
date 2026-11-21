@@ -3,9 +3,10 @@ import json
 import os
 
 import httpx
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from gateway.identity import Employee, get_employee 
 from gateway.events import log_event
 
 UPSTREAM_URL = os.getenv("UPSTREAM_URL", "http://localhost:9000")
@@ -31,7 +32,7 @@ def extract_tool_calls(response_body: dict) -> list[dict]:
 
 
 @app.post("/v1/chat/completions")
-async def chat_completions(request: Request) -> JSONResponse:
+async def chat_completions(request: Request, employee: Employee = Depends(get_employee)) -> JSONResponse:
     body = await request.json()
 
     async with httpx.AsyncClient(timeout=60) as client:
@@ -45,6 +46,8 @@ async def chat_completions(request: Request) -> JSONResponse:
 
     log_event(
         "llm_response",
+        employee_id=employee.employee_id,
+        role=employee.role,
         model=body.get("model"),
         upstream_status=upstream.status_code,
         tool_calls=extract_tool_calls(response_body),
