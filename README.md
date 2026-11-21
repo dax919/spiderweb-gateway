@@ -11,7 +11,7 @@ Das Gateway prüft jede AI-Anfrage gegen feste Rollengrenzen und das gewohnte Ve
 ## Fahrplan
 [X] Fake-LLM für deterministische Tests
 [X] Gateway als Proxy mit Logging
-[] Identität per Token
+[X] Identität per Token
 [] Rollen-Policy und Freeze
 [] SOC-Seite
 [] Fake-Wissensdatenbank
